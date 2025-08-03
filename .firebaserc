@@ -1,5 +1,13 @@
 {
   "projects": {
     "default": "testingkelownafinal"
+  },
+  "targets": {
+    "testingkelownafinal": {
+      "hosting": {
+        "staging": ["kelowna-staging-72dd5"],
+        "production": ["kelowna-production-8f932"]
+      }
+    }
   }
 }
