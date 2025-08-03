@@ -1,6 +1,6 @@
 pipeline {
     agent any
-       //Esteban Poblano Romero
+
     environment {
         FIREBASE_TOKEN = credentials('FIREBASE_TOKEN')
     }
@@ -14,8 +14,7 @@ pipeline {
 
         stage('Staging') {
             steps {
-                sh 'firebase use staging --token "$FIREBASE_TOKEN"'
-                sh 'firebase deploy --only hosting --token "$FIREBASE_TOKEN"'
+                sh 'firebase deploy --only hosting:staging --token "$FIREBASE_TOKEN"'
             }
         }
 
@@ -24,9 +23,9 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'firebase use production --token "$FIREBASE_TOKEN"'
-                sh 'firebase deploy --only hosting --token "$FIREBASE_TOKEN"'
+                sh 'firebase deploy --only hosting:production --token "$FIREBASE_TOKEN"'
             }
         }
     }
 }
+
