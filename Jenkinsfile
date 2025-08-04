@@ -5,13 +5,6 @@ pipeline {
         FIREBASE_TOKEN = credentials('firebase-token')
     }
 
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
         stage('Test') {
             steps {
                 echo 'Manual testing only for this assignment.'
