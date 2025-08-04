@@ -1,10 +1,11 @@
 pipeline {
     agent any
-    //Esteban
+
     environment {
         FIREBASE_TOKEN = credentials('firebase-token')
     }
 
+    stages {
         stage('Test') {
             steps {
                 echo 'Manual testing only for this assignment.'
