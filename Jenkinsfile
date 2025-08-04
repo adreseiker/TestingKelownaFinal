@@ -6,6 +6,12 @@ pipeline {
     }
 
     stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
         stage('Test') {
             steps {
                 echo 'Manual testing only for this assignment.'
@@ -20,7 +26,9 @@ pipeline {
 
         stage('Production') {
             when {
-                branch 'main'
+                expression {
+                    return env.BRANCH_NAME == 'main' || env.GIT_BRANCH == 'origin/main'
+                }
             }
             steps {
                 sh 'firebase deploy --only hosting:production --token "$FIREBASE_TOKEN"'
